@@ -26,9 +26,9 @@ public class CaixeiroViajante {
     static boolean mostrar_detalhes_cromossomo_fitness = false;
     static boolean mostrar_passo_a_passo_cromossomo_fitness = false;
     static boolean mostrar_populacao = false;
-    static boolean mostrar_eFitness = false;
+    static boolean mostrar_eFitness = true;
     static boolean mostrar_mutacao = false;
-    static boolean mostrar_dados = false;
+    static boolean mostrar_dados = true;
     static boolean mostrar_geracoes = false;
 
     public static String converte(int letras) {
