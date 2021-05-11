@@ -21,13 +21,18 @@ public class CaixeiroViajante {
     static int bestGeneration;
 
     // Modelos de visão
-    static boolean mostrar_adicionais = true;
+    static boolean mostrar_adicionais = false;
     static boolean mostrar_matrix_dist = false;
-    static boolean mostrar_detalhes_cromossomo_fitness = true;
+    static boolean mostrar_detalhes_cromossomo_fitness = false;
     static boolean mostrar_passo_a_passo_cromossomo_fitness = false;
     static boolean mostrar_populacao = false;
     static boolean mostrar_eFitness = true;
     static boolean mostrar_mutacao = false;
+
+    public static String converte(int letras) {
+        String[] alfabeto = {"A", "B", "C", "D", "E", "F", "G", "H"};
+        return alfabeto[letras];
+    }
 
     public CaixeiroViajante(String fileName){
         this.FILE = fileName;
@@ -54,7 +59,7 @@ public class CaixeiroViajante {
             startCity = x-1;
 
             if(mostrar_adicionais == true)
-                System.out.println("Total cities: "+(totalCities+1)+" | Starting city: "+(startCity+1));
+                System.out.println("Total de Cidades: "+(totalCities+1)+" | Cidade Inicial: "+(startCity+1));
 
             // Pega a distancia entre as cidades
             city1 = 0;
@@ -165,7 +170,6 @@ public class CaixeiroViajante {
             // Calcula o valor do fitness entre 1 e 0
             fitnessValue = 1/totalDist;
 
-
             if( mostrar_detalhes_cromossomo_fitness == true){
                 System.out.print(generation+"-"+chromosome+" | C:");
                 for(int gene = 0 ; gene <= totalCities+1; gene++){
@@ -193,14 +197,14 @@ public class CaixeiroViajante {
         }
 
         if(mostrar_eFitness == true)
-            System.out.println("Champion of this gen "+generation+"-"+eChromosome+" : "+eFitness);
+            System.out.println("Melhor Geração: "+generation+"-"+eChromosome+" : "+eFitness);
 
         // Adiciona a melhor geração para a ELITE
         ePopulation[generation]=eChromosome;
 
         if(generation == maxGeneration-1){
             // some print commands
-            System.out.println("\nFinal Results:");
+            System.out.println("\nResultado:");
             // find the best stuff
             for(int i = 0; i < maxGeneration; i++){
                 for(int j = 0; j < maxPopulation; j++){
@@ -378,13 +382,13 @@ public class CaixeiroViajante {
     public static void main(String[] args) {
 
         initialize_ds();
-        System.out.println("\nGen: 0");
+        System.out.println("\nGeração: 0");
         initializePopulation();
         evaluatePopulation();
 
         while(++generation < maxGeneration){
             createNextGen();
-            System.out.println("Gen: " + generation);
+            System.out.println("Geração: " + generation);
             evaluatePopulation();
         }
     }
