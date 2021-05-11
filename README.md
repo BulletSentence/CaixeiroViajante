@@ -10,7 +10,9 @@
 
 ## Exemplo
 (Cidade 0 > Cidade 1)
+
 (Cidade 0 > Cidade 2)(Cidade 1 > Cidade 2)
+
 (Cidade 0 > Cidade 3)(Cidade 1 > Cidade 3)(Cidade 2 > Cidade 3)
  
  # Problema
