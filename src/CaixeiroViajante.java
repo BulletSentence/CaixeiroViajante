@@ -6,7 +6,7 @@ public class CaixeiroViajante {
     static int totalCities, startCity;
     static int[][] dist_matrix;
     static int[][][] population;
-    static String FILE = "cidades.txt";
+    static String FILE = "problema1.txt";
     static int generation = 0;
     static int maxGeneration = 50;
     static int maxPopulation = 50;
