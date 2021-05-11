@@ -26,12 +26,14 @@ public class CaixeiroViajante {
     static boolean mostrar_detalhes_cromossomo_fitness = false;
     static boolean mostrar_passo_a_passo_cromossomo_fitness = false;
     static boolean mostrar_populacao = false;
-    static boolean mostrar_eFitness = true;
+    static boolean mostrar_eFitness = false;
     static boolean mostrar_mutacao = false;
+    static boolean mostrar_dados = false;
+    static boolean mostrar_geracoes = false;
 
     public static String converte(int letras) {
         String[] alfabeto = {"A", "B", "C", "D", "E", "F", "G", "H"};
-        return alfabeto[letras];
+        return alfabeto[letras].toString();
     }
 
     public CaixeiroViajante(String fileName){
@@ -173,7 +175,9 @@ public class CaixeiroViajante {
             if( mostrar_detalhes_cromossomo_fitness == true){
                 System.out.print(generation+"-"+chromosome+" | C:");
                 for(int gene = 0 ; gene <= totalCities+1; gene++){
+                    int var = population[generation][chromosome][gene];
                     System.out.print(" "+population[generation][chromosome][gene]+" ");
+
                 }
                 System.out.println("| D: "+totalDist+" | F: "+fitnessValue );
             }
@@ -216,9 +220,9 @@ public class CaixeiroViajante {
                 }
             }
 
-            System.out.print(bestGeneration+"-"+bestChromosome+" : C: ");
+            System.out.print(bestGeneration+"-"+bestChromosome+" : SEQUENCIA: ");
             for(int gene = 0; gene <= totalCities+1; gene++){
-                System.out.print(" "+population[bestGeneration][bestChromosome][gene]+" ");
+                System.out.print(" "+converte(population[bestGeneration][bestChromosome][gene])+" ");
                 // Pega a melhor distancia
                 if(gene < totalCities+1){
                     cityA = population[bestGeneration][bestChromosome][gene];
@@ -226,7 +230,7 @@ public class CaixeiroViajante {
                     totalDist += dist_matrix[cityA][cityB];
                 }
             }
-
+            if(mostrar_dados == true)
             System.out.print(" | D: "+totalDist+" | F: "+fitness[bestGeneration][bestChromosome]);
         }
     }
@@ -382,13 +386,19 @@ public class CaixeiroViajante {
     public static void main(String[] args) {
 
         initialize_ds();
-        System.out.println("\nGeração: 0");
+
+        if (mostrar_geracoes == true) {
+            System.out.println("\nGeração: 0");
+        }
+
         initializePopulation();
         evaluatePopulation();
 
         while(++generation < maxGeneration){
             createNextGen();
-            System.out.println("Geração: " + generation);
+            if (mostrar_geracoes == true) {
+                System.out.println("Geração: " + generation);
+            }
             evaluatePopulation();
         }
     }
