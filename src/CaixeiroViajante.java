@@ -4,15 +4,15 @@ import java.util.Random;
 public class CaixeiroViajante {
 
     static int totalCities, startCity;
-    static int[][] dist_matrix;	// [CidadeInicial][CidadeFinal] | retorna a distancia entre duas cidades
-    static int[][][] population;	// [geracao][cromosomo][gene] | retorna um valor de gene de uma posicção dada pelo cromosomo para ma geração
+    static int[][] dist_matrix;
+    static int[][][] population;
     static String FILE = "cidades.txt";
     static int generation = 0;
-    static int maxGeneration = 100;
+    static int maxGeneration = 50;
     static int maxPopulation = 50;
     static double mutationRate = 0.5;
     static double crossoverRate = 0.5;
-    static int[] ePopulation = new int[maxGeneration]; // retorna o melhor cromossomo da geração
+    static int[] ePopulation = new int[maxGeneration];
     static int elitism = 1;
     static double[][] fitness = new double[maxGeneration][maxPopulation];
 
@@ -20,7 +20,7 @@ public class CaixeiroViajante {
     static int bestChromosome;
     static int bestGeneration;
 
-    // Modelos de visão
+    // Modelos de PRINT
     static boolean mostrar_adicionais = false;
     static boolean mostrar_matrix_dist = false;
     static boolean mostrar_detalhes_cromossomo_fitness = false;
@@ -366,8 +366,6 @@ public class CaixeiroViajante {
         return 0;
     }
 
-    // ---------------- FUNÇÕES ALEATÓRIAS -------------------------
-
     public static int genRandom(int x){
         Random output = new Random();
         int number = output.nextInt(x);
@@ -380,8 +378,6 @@ public class CaixeiroViajante {
         double number = output.nextDouble();
         return number;
     }
-
-    // --------------------------------------------------------------
 
     public static void main(String[] args) {
 
